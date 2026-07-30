@@ -47,8 +47,8 @@ app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 # BƯỚC THÊM VÀO: Cấu hình CORS để cho phép Next.js gọi API
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"], # Cho phép cổng 3000 của Next.js gọi vào
-    allow_credentials=True,
+    allow_origins=["*"], # Cho phép mọi tên miền (cả Vercel và localhost) gọi API
+    allow_credentials=False,
     allow_methods=["*"], # Cho phép mọi phương thức (GET, POST, PUT, DELETE)
     allow_headers=["*"],
 )
