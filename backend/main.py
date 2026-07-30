@@ -45,11 +45,15 @@ os.makedirs("uploads", exist_ok=True)
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
 # BƯỚC THÊM VÀO: Cấu hình CORS để cho phép Next.js gọi API
+# Thêm đoạn này để cho phép Vercel kết nối
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Cho phép mọi tên miền (cả Vercel và localhost) gọi API
-    allow_credentials=False,
-    allow_methods=["*"], # Cho phép mọi phương thức (GET, POST, PUT, DELETE)
+    allow_origins=[
+        "https://help-desk-hopital-132.vercel.app", # Link frontend Vercel của bạn
+        "http://localhost:3000" # Giữ lại localhost để bạn code trên máy tính
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
